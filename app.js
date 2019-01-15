@@ -5,7 +5,7 @@ function onReady() {
   const newToDoText = document.getElementById("newToDoText");
   const toDoList = document.getElementById("toDoList");
 
-  addToDoForm.addEventListner("submit", event => {
+  addToDoForm.addEventListener("submit", event => {
     event.preventDefault();
 
     let title = newToDoText.value; //gets text
@@ -17,19 +17,20 @@ function onReady() {
     let deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Delete";
 
-    deleteBtn.addEventListner("click", function event
+    deleteBtn.addEventListener("click", function(event) {
       // console.log(event);
       // this.parentElement represents the button's <li> parent
       toDoList.removeChild(this.parentElement);
+    });
 
     newLi.textContent = title; // set the title
     newLi.appendChild(checkbox);
     newLi.appendChild(deleteBtn);
     toDoList.appendChild(newLi);
     newToDoText.value = "";
+});
+}
 
 window.onload = function() {
   onReady();
 };
-});
-}

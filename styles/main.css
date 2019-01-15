@@ -1,2 +1,11 @@
-// this.parentElement represents the button's <li> parent
-toDoList.removeChild(this.parentElement);
+body {
+  padding-bottom: : 5rem;
+  background-color: #F5F3EF;
+}
+
+h1 {
+  background-color: #2487AA;
+  color: #F5F3EF;
+  width: 900px;
+  text-align: center;
+}
