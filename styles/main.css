@@ -1,0 +1,2 @@
+// this.parentElement represents the button's <li> parent
+toDoList.removeChild(this.parentElement);
