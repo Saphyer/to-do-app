@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 
 function onReady() {
-  const toDos = [];
+  let toDos = [];
   const addToDoForm = document.getElementById("addToDoForm");
   let id = 0;
 
