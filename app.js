@@ -1,39 +1,48 @@
 /*jshint esversion: 6 */
 
-function onReady(){
-  const ADD_TODO_FORM = document.getElementById("addToDoForm");
-  const NEW_TODO_TEXT = document.getElementById("newToDoText");
-  const TODO_LIST = document.getElementById("toDoList");
+function onReady() {
+  const toDos = [];
+  const addToDoForm = document.getElementById("addToDoForm");
 
-  addToDoForm.addEventListner("submit", event => {
-    event.preventDefault();
+  function createNewToDo() {
+    const newToDoText = document.getElementById("newToDoText");
+    if (!newToDoText.value) { return; }
 
-    addToDoForm.addEventListener('submit', () => {
-
-    let title = NEW_TODO_TEXT.value; //gets text
-
-    let newLi = document.createElement("li"); //<li></li>
-    let checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-
-    let deleteBtn = document.createElement("button");
-    deleteBtn.textContent = "Delete";
-
-    deleteBtn.addEventListner("click", function(event){
-      // console.log(event);
-      // this.parentElement represents the button's <li> parent
-      TODO_LIST.removeChild(this.parentElement);
+    toDos.push({
+      title: newToDoText.value,
+      complete: false
     });
+    newToDoText.value = "";
 
-    newLi.textContent = title; // set the title
-    newLi.appendChild(checkbox);
-    newLi.appendChild(deleteBtn);
-    TODO_LIST.appendChild(newLi);
-    NEW_TODO_TEXT.value = "";
+    renderTheUI();
+  }
+
+  function renderTheUI() {
+    const toDoList = document.getElementById("toDoList");
+
+    toDoList.textContent = "";
+
+    toDos.forEach(function(toDo) {
+      const newLi = document.createElement("li");
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+
+      newLi.textContent = toDo.title;
+
+      toDoList.appendChild(newLi);
+      newLi.appendChild(checkbox);
+    });
+  }
+
+  addToDoForm.addEventListener("submit", event => {
+    event.preventDefault();
+    createNewToDo();
+
   });
-});
+
+  renderTheUI();
+}
 
 window.onload = function() {
   onReady();
 };
-}
